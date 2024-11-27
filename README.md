@@ -1,5 +1,5 @@
 # PolyManger
-Siteweb permettant le partage de recette et de mealplan pour les étudiants de Polytechnique Montréal
+Site web permettant le partage de recettes et de mealplans pour les étudiants de Polytechnique Montréal
 
 To run the code: 
 
