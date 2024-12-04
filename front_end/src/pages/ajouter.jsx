@@ -7,10 +7,12 @@ function Ajouter(){
         console.log("Submit")
       };
     return (
-    <div class="w-[100%] mb-12 h-screen">
-      <div class="w-[100%] grid grid-rows-2">
-        <div class="w-[32rem] h-flex rounded-2xl shadow-xl ring ring-slate-700 place-self-center grid grid-cols-2">
-            <div class="w-flex h-16 ring"></div>
+    <div class="w-[100%] h-screen">
+      <div class="w-[100%] h-flex">
+        <div class="mt-32 h-flex">
+          <div class="w-[32rem] h-flex rounded-2xl shadow-xl ring ring-slate-700 place-self-center grid grid-cols-2">
+              <div class="w-flex h-16 ring"></div>
+          </div>
         </div>
         <div class="w-[32rem] h-flex rounded-2xl shadow-xl ring ring-slate-700 place-self-center">
           <form onSubmit={handleSubmit(onSubmit)}>
