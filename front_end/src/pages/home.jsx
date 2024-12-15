@@ -58,10 +58,107 @@ function Home(){
                     </div>
                 </div>
             </div>
-            <div class="h-flex col-span-7">
-                <div class="h-64 "></div>
-                <div class="h-64 "></div>
-                <div class="h-64 "></div>
+            <div class="h-flex col-span-7 mt-8 ml-8 mr-8 mb-8">
+                <div class="h-flex w-full grid grid-cols-4 gap-8">
+                    <div class="h-64 w-full ring dark:ring-white ring-dark rounded-xl">
+                        <div class="h-full grid grid-rows-6">
+                            <div class=" row-span-2 grid grid-cols-3">
+                                <div class="col-span-3 grid">
+                                    <h1 class="place-self-center dark:text-white font-bold text-2xl text-center">Spaghetti</h1>
+                                </div>
+                            </div>
+                            <div class="row-span-2 grid grid-cols-3 ml-2 mr-2">
+                                <div class=" grid grid-rows-2">
+                                    <h1 class=" place-self-center dark:text-white font-bold text-2xl text-center">1h30</h1>
+                                    <h1 class=" dark:text-white text-xl text-center">Cuisson</h1>
+                                </div>
+                                <div class=" grid grid-rows-2">
+                                    <h1 class=" place-self-center dark:text-white font-bold text-2xl text-center">30min</h1>
+                                    <h1 class=" dark:text-white  text-xl text-center">Prép.</h1>
+                                </div>
+                                <div class=" grid grid-rows-2">
+                                    <h1 class=" place-self-center dark:text-white font-bold text-2xl text-center">4.5$</h1>
+                                    <h1 class=" dark:text-white  text-xl text-center">portion</h1>
+                                </div>
+                            </div>
+                            <div class=" row-span-2 grid grid-cols-3">
+                                <div class="col-span-2 grid grid-cols-2 mt-2 mb-2 ml-2">
+                                    <div class="mb-1 ml-1 mr-1 rounded bg-blue-400 grid opacity-25"><h1 class=" text-center place-self-center">Time</h1></div>
+                                    <div class="mb-1 ml-1 mr-1 rounded bg-red-400 grid opacity-25"><h1 class=" text-center place-self-center">Gym Bro</h1></div>
+                                    <div class="mb-1 ml-1 mr-1 rounded bg-orange-400 grid"><h1 class=" text-center place-self-center">Cheap</h1></div>
+                                    <div class="mb-1 ml-1 mr-1 rounded bg-green-400 text-center grid opacity-25"><h1 class=" text-center place-self-center">Végé</h1></div>
+                                </div>
+                                <div class="h-full grid ml-2 mr-2">
+                                    <h1 class="place-self-center dark:text-white text-2xl font-bold">4.5⭐</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-64 w-full ring dark:ring-white ring-dark rounded-xl">
+                        <div class="h-full grid grid-rows-6">
+                            <div class=" row-span-2 grid grid-cols-3">
+                                <div class="col-span-3 grid">
+                                    <h1 class="place-self-center dark:text-white font-bold text-2xl text-center">Riz Poulet</h1>
+                                </div>
+                            </div>
+                            <div class="row-span-2 grid grid-cols-3 ml-2 mr-2">
+                                <div class=" grid grid-rows-2">
+                                    <h1 class=" place-self-center dark:text-white font-bold text-2xl text-center">30min</h1>
+                                    <h1 class=" dark:text-white text-xl text-center">Cuisson</h1>
+                                </div>
+                                <div class=" grid grid-rows-2">
+                                    <h1 class=" place-self-center dark:text-white font-bold text-2xl text-center">5min</h1>
+                                    <h1 class=" dark:text-white  text-xl text-center">Prép.</h1>
+                                </div>
+                                <div class=" grid grid-rows-2">
+                                    <h1 class=" place-self-center dark:text-white font-bold text-2xl text-center">8.5$</h1>
+                                    <h1 class=" dark:text-white  text-xl text-center">portion</h1>
+                                </div>
+                            </div>
+                            <div class=" row-span-2 grid grid-cols-3">
+                                <div class="col-span-2 grid grid-cols-2 mt-2 mb-2 ml-2">
+                                    <div class="mb-1 ml-1 mr-1 rounded bg-blue-400 grid opacity-25"><h1 class=" text-center place-self-center">Time</h1></div>
+                                    <div class="mb-1 ml-1 mr-1 rounded bg-red-400 grid "><h1 class=" text-center place-self-center">Gym Bro</h1></div>
+                                    <div class="mb-1 ml-1 mr-1 rounded bg-orange-400 grid"><h1 class=" text-center place-self-center">Cheap</h1></div>
+                                    <div class="mb-1 ml-1 mr-1 rounded bg-green-400 text-center grid opacity-25"><h1 class=" text-center place-self-center">Végé</h1></div>
+                                </div>
+                                <div class="h-full grid ml-2 mr-2">
+                                    <h1 class="place-self-center dark:text-white text-2xl font-bold">2.5⭐</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                    <div class="h-64 w-full ring">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
