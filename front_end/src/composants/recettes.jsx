@@ -9,25 +9,18 @@ function Recettes(){
     const [hasMore, setHasMore] = useState(false);
     const limit = 4 //devra etre changer en fonction de la taille de l'écran
 
-
-    useEffect(() => {
-        _fetchRecipy();
-        console.log(pageNumber)
-    }, [pageNumber])
-
     const elementRef = useRef(null)
 
     function onIntersection(entries){
         const firstEntry = entries[0]
         if(firstEntry.isIntersecting && hasMore){
-        setPageNumber(prev => prev+1)
+            setPageNumber(prev => prev+1)
         }
     }
 
     async function _fetchRecipy() {
         setLoading(true);
         const recettes = await fetchRecipy(pageNumber, limit);
-        console.log(recettes)
         if(recettes.length == 0){
             setHasMore(false);
         }else{
@@ -49,6 +42,10 @@ function Recettes(){
         }
         }
     }, [Recettes])
+    useEffect(() => {
+        _fetchRecipy();
+         console.log(pageNumber)
+     }, [pageNumber])
     if(isLoading == true){
         return (
             <div class="h-flex w-full grid grid-cols-4 gap-8">

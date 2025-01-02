@@ -12,7 +12,6 @@ async function fetchRecipy(page, limit){
       
       })
     const data = await response.data;
-    console.log(data)
     return data;
 };
 
