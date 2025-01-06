@@ -1,19 +1,30 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form'; //npm install react-hook-form
+import submitRecipy from "../functions/submitRecipy";
 function Ajouter(){
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [recetteState, setRecetteState] = useState(true);
+    const [cheap, setCheap] = useState(false);
+    const [gymBro, setGymBro] = useState(false);
+    const [time, setTime] = useState(false);
+    const [vege, setVege] = useState(false);
     const [showIngredientsState, setShowIngredientState] = useState(false);
-    const [ingredients, setIngredientsState] = useState([{'name':null,'quantity':null}]);
+    const [ingredients, setIngredientsState] = useState([{'name':"",'quantity':""}]);
     const [showInstructionsState, setShowInstructionsState] = useState(false);
-    const [Instructions, setInstructionsState] = useState([{'instruction':null}]);
+    const [Instructions, setInstructionsState] = useState([""]);
     const onSubmit = async (data) => {
-        console.log(data)
-      };
+      data["vege"] = vege
+      data["gymBro"] = gymBro
+      data["time"] = time
+      data["cheap"] = cheap
+      data["instruction"]=Instructions
+      data["ingredients"]=ingredients
+      submitRecipy(data)
+    };
     const ingredient = () =>{
       event.preventDefault()
-      setIngredientsState([...ingredients,{'name':null,'quantity':null}])
+      setIngredientsState([...ingredients,{'name':"",'quantity':""}])
     }
     const changeShowIngredient = () =>{
       event.preventDefault()
@@ -25,7 +36,7 @@ function Ajouter(){
     }
     const instruction = () =>{
       event.preventDefault()
-      setInstructionsState([...Instructions,{'instruction':null}])
+      setInstructionsState([...Instructions,""])
     }
     const changeShowInstruction = () =>{
       event.preventDefault()
@@ -34,6 +45,27 @@ function Ajouter(){
       }else{
         setShowInstructionsState(true)
       }
+    }
+    const updateIngredientName = index => e => {
+      let newArr = [...ingredients]; // copying the old datas array
+      // a deep copy is not needed as we are overriding the whole object below, and not setting a property of it. this does not mutate the state.
+      newArr[index] = {"name":e.target.value, "quantity": newArr[index].quantity }; // replace e.target.value with whatever you want to change it to
+    
+      setIngredientsState(newArr);
+    }
+    const updateIngredientQuantity = index => e => {
+      let newArr = [...ingredients]; // copying the old datas array
+      // a deep copy is not needed as we are overriding the whole object below, and not setting a property of it. this does not mutate the state.
+      newArr[index] = {"name":newArr[index].name, "quantity": e.target.value }; // replace e.target.value with whatever you want to change it to
+    
+      setIngredientsState(newArr);
+    }
+    const updateInstruction = index => e => {
+      let newArr = [...Instructions]; // copying the old datas array
+      // a deep copy is not needed as we are overriding the whole object below, and not setting a property of it. this does not mutate the state.
+      newArr[index] = e.target.value; // replace e.target.value with whatever you want to change it to
+    
+      setInstructionsState(newArr);
     }
     return (
     <div class="w-[100%] h-flex mb-16">
@@ -87,8 +119,14 @@ function Ajouter(){
             </div>
             <div class="w-[80%] ml-[10%] h-24 ">
               <label for="message" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Temps de préparation :</label>
-              <input type="text"  {...register("preparation", { required: true })} class=" rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="eg. 30min"></input>
+              <input type="text"  {...register("prep", { required: true })} class=" rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="eg. 30min"></input>
               {errors.preparation && <p class="text-red-500">Quel est le temps de préparation?</p>}
+            </div>
+            <div class="w-[80%] h-10 grid grid-cols-4 mt-2 mb-4 ml-2 place-self-center">
+              {time ? <button class="mb-1 ml-1 mr-1 rounded bg-blue-400 grid" onClick={()=>{event.preventDefault();setTime(false)}}><h1 class=" text-center place-self-center">Time</h1></button> : <button onClick={()=>{event.preventDefault();setTime(true)}} class="mb-1 ml-1 mr-1 rounded bg-blue-400 grid opacity-25"><h1 class=" text-center place-self-center">Time</h1></button>}
+              {gymBro? <button onClick={()=>{event.preventDefault();setGymBro(false)}} class="mb-1 ml-1 mr-1 rounded bg-red-400 grid"><h1 class=" text-center place-self-center">Gym Bro</h1></button> : <button onClick={()=>{event.preventDefault();setGymBro(true)}} class="mb-1 ml-1 mr-1 rounded bg-red-400 grid opacity-25"><h1 class=" text-center place-self-center">Gym Bro</h1></button>}
+              {cheap ? <button onClick={()=>{event.preventDefault();setCheap(false)}} class="mb-1 ml-1 mr-1 rounded bg-orange-400 grid"><h1 class=" text-center place-self-center">Cheap</h1></button> : <button onClick={()=>{event.preventDefault();setCheap(true)}} class="mb-1 ml-1 mr-1 rounded bg-orange-400 grid opacity-25"><h1 class=" text-center place-self-center">Cheap</h1></button>}
+              {vege ? <button onClick={()=>{event.preventDefault();setVege(false)}} class="mb-1 ml-1 mr-1 rounded bg-green-400 grid"><h1 class=" text-center place-self-center">Végé</h1></button> : <button onClick={()=>{event.preventDefault();setVege(true)}} class="mb-1 ml-1 mr-1 rounded bg-green-400 grid opacity-25"><h1 class=" text-center place-self-center">Végé</h1></button>}
             </div>
             <div class="w-[80%] ml-[10%] h-flex mb-4">
               <div class="grid grid-cols-10">
@@ -115,11 +153,11 @@ function Ajouter(){
                       <div class=" grid">
                         <h1 class="text-xl dark:text-white font-bold text-center place-self-center">{index+1}.</h1>
                       </div>
-                      <div class=" col-span-5 ml-2 mr-2">
-                        <input type="text" {...register("ingredientName "+index.toString(), { required: true })} class="h-full w-full dark:bg-gray-900 dark:text-white text-bold p-2 border border-b-white border-t-transparent border-l-transparent border-r-transparent"></input>
+                      <div class=" col-span-5 ml-2 mr-2" onChange={updateIngredientName(index)}>
+                        <input value={ingredient.name} type="text" required class="h-full w-full dark:bg-gray-900 dark:text-white text-bold p-2 border border-b-white border-t-transparent border-l-transparent border-r-transparent"></input>
                       </div>
-                      <div class=" col-span-3 ml-4">
-                        <input type="text" {...register("ingredientQuantity "+index.toString(), { required: true })} class="text-center h-full w-full dark:bg-gray-900 dark:text-white text-bold p-2 border border-b-white border-t-transparent border-l-transparent border-r-transparent"></input>
+                      <div class=" col-span-3 ml-4" onChange={updateIngredientQuantity(index)}>
+                        <input value={ingredient.quantity}  type="text" required class="text-center h-full w-full dark:bg-gray-900 dark:text-white text-bold p-2 border border-b-white border-t-transparent border-l-transparent border-r-transparent"></input>
                       </div>
                     </div>
                   )}
@@ -148,8 +186,8 @@ function Ajouter(){
                       <div class=" grid">
                         <h1 class="text-xl dark:text-white font-bold text-center place-self-center">{index+1}.</h1>
                       </div>
-                      <div class=" col-span-8 ml-2 mr-2">
-                        <input type="text" {...register("instruction "+index.toString(), { required: true })} class="h-full w-full dark:bg-gray-900 dark:text-white text-bold p-2 border border-b-white border-t-transparent border-l-transparent border-r-transparent"></input>
+                      <div class=" col-span-8 ml-2 mr-2" onChange={updateInstruction(index)}>
+                        <input value={instruction} type="text" required class="h-full w-full dark:bg-gray-900 dark:text-white text-bold p-2 border border-b-white border-t-transparent border-l-transparent border-r-transparent"></input>
                       </div>
                     </div>
                   )}
@@ -159,7 +197,7 @@ function Ajouter(){
             </div>
           </div>
           <div class="w-[32rem] h-flex mt-8 place-self-center grid">
-            <button onClick={()=>{}} class="h-12 rounded-lg w-[50%] place-self-center text-2xl text-center font-bold bg-blue-700 text-white">Submit</button>
+            <button onClick={()=>{setShowIngredientState(true);setShowInstructionsState(true)}} class="h-12 rounded-lg w-[50%] place-self-center text-2xl text-center font-bold bg-blue-700 text-white">Submit</button>
           </div>
         </form>
       </div>
