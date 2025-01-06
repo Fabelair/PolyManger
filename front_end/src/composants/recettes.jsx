@@ -44,13 +44,12 @@ function Recettes(){
     }, [Recettes])
     useEffect(() => {
         _fetchRecipy();
-         console.log(pageNumber)
      }, [pageNumber])
     if(isLoading == true){
         return (
             <div class="h-flex w-full grid grid-cols-4 gap-8">
                 {Recettes.map((recette) =>
-                    <Link class="" to={"/"+recette.name}>
+                    <Link class="" to={"/"+recette.name} key={recette._id}>
                         <div class="h-64 w-full ring dark:ring-white ring-dark rounded-xl">
                             <div class="h-full grid grid-rows-6">
                                 <div class=" row-span-2 grid grid-cols-3">
@@ -102,7 +101,7 @@ function Recettes(){
         <div class="">
             {<div class="h-flex w-full grid grid-cols-4 gap-8">
                 {Recettes.map((recette) =>
-                    <Link class="" to={"/"+recette.name}>
+                    <Link class="" to={"/"+recette.name} key={recette._id}>
                         <div class="h-64 w-full ring dark:ring-white ring-dark rounded-xl">
                             <div class="h-full grid grid-rows-6">
                                 <div class=" row-span-2 grid grid-cols-3">
