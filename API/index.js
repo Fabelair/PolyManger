@@ -84,25 +84,35 @@ app.post('/connect', async function (req,res){
     const user = await client.db("PolyManger").collection("Clients").findOne({userName:username,passWord:psw});
     console.log(user)
     res.json(user)
+    return
   } catch(e){
       console.log(e);
       res.json(400)
+      return
   }
 })
 //verifier qu'il est unique et inscrit l'utilisateur
 app.post('/login', async function (req,res){
-  try {
+  try{ 
     const username = req.body.username;
     const psw = req.body.psw;
+    if(username == "" || psw==""){
+      res.json(null)
+      return
+    }
     if(await client.db("PolyManger").collection("Clients").findOne({userName:username})){
       res.json(null)
+      return
     }else{
       const user = await client.db("PolyManger").collection("Clients").insertOne({userName:username,passWord:psw});
       res.json(user)
+      return
     };
-  } catch(e){
+   }
+   catch(e){
       console.log(e);
       res.json(400)
+      return
   }
 })
 

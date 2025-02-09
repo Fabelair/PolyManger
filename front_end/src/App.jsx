@@ -9,7 +9,7 @@ import Connect from './pages/connect';
 import { useState } from "react";
 import { getConnectionId } from './functions/gestionDeConnection';
 
-function App() {
+export function App() {
   const [idConnection, setIdConnection] = useState();
   useEffect(()=>{
     const id = getConnectionId()

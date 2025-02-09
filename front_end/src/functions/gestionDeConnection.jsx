@@ -4,6 +4,11 @@ import Cookies from 'universal-cookie';
 import axios from "axios";
 export function gestionDeConnection(id){
     try{
+        if(id==null){
+            localStorage.removeItem("idConnectionPolyManger")
+            console.log(id+ " removed item")
+            return
+        }
         if(localStorage.getItem("idConnectionPolyManger")!=id){
             localStorage.setItem("idConnectionPolyManger",id)
             console.log(id+ " is set in memory as the userId")
@@ -16,6 +21,17 @@ export function gestionDeConnection(id){
 export function getConnectionId(){
     try{
         return localStorage.getItem("idConnectionPolyManger")
+    }catch(e){
+        console.log(e)
+    }
+}
+export function getConnectionStatus(){
+    try{
+        if(localStorage.getItem("idConnectionPolyManger") == null || localStorage.getItem("idConnectionPolyManger") == undefined){
+            return false
+        }else{
+            return true
+        }
     }catch(e){
         console.log(e)
     }
