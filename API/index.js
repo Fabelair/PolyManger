@@ -64,7 +64,6 @@ app.post('/addRecette', async function (req, res){
       return
   }
 })
-
 //fetch function for website infinite scroll
 app.post('/fetchRecettes', async function (req, res) {
   try {
@@ -82,9 +81,25 @@ app.post('/connect', async function (req,res){
   try {
     const username = req.body.username;
     const psw = req.body.psw;
-    const recettes = await client.db("PolyManger").collection("Recettes").find().skip(skips).limit(parseInt(req.body.limit)).toArray();
-    console.log(recettes)
-    res.json(recettes)
+    const user = await client.db("PolyManger").collection("Clients").findOne({userName:username,passWord:psw});
+    console.log(user)
+    res.json(user)
+  } catch(e){
+      console.log(e);
+      res.json(400)
+  }
+})
+//verifier qu'il est unique et inscrit l'utilisateur
+app.post('/login', async function (req,res){
+  try {
+    const username = req.body.username;
+    const psw = req.body.psw;
+    if(await client.db("PolyManger").collection("Clients").findOne({userName:username})){
+      res.json(null)
+    }else{
+      const user = await client.db("PolyManger").collection("Clients").insertOne({userName:username,passWord:psw});
+      res.json(user)
+    };
   } catch(e){
       console.log(e);
       res.json(400)

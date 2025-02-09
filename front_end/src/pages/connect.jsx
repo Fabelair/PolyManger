@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import {connection,signUp} from "../functions/gestionDeConnection"
 function Connect(){
     async function _connection(){
-        connection(document.getElementById("username").value,document.getElementById("psw").value)
+        var res = await connection(document.getElementById("username").value,document.getElementById("psw").value)
+        console.log(res)
         return
     }
     async function _signUp(){
-        signUp(document.getElementById("username").value,document.getElementById("psw").value)
+        var res = await signUp(document.getElementById("username").value,document.getElementById("psw").value)
+        console.log(res)
         return
     }
     return(<div class="h-screen grid">

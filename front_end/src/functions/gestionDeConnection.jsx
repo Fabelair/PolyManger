@@ -1,11 +1,12 @@
 //npm install universal-cookie
 import React, { useState } from "react"
 import Cookies from 'universal-cookie';
-
+import axios from "axios";
 export function gestionDeConnection(id){
     try{
         if(localStorage.getItem("idConnectionPolyManger")!=id){
             localStorage.setItem("idConnectionPolyManger",id)
+            console.log(id+ " is set in memory as the userId")
         }
         return true
     }catch(e){
@@ -20,10 +21,39 @@ export function getConnectionId(){
     }
 }
 export async function connection(user,psw){
-    console.log(psw)
-    return
+    const response = await axios.request({
+        method: 'POST',
+        url: `http://localhost:3000/connect`,
+        headers: {
+        },
+        data: {
+          username: user,
+          psw: psw
+        },
+    })
+    if(response.data == null){
+        return false
+    }else{
+        gestionDeConnection(response.data._id.toString())
+        return true
+    }
 }
 export async function signUp(user,psw){
-    console.log(psw)
+    const response = await axios.request({
+        method: 'POST',
+        url: `http://localhost:3000/login`,
+        headers: {
+        },
+        data: {
+          username: user,
+          psw: psw
+        },
+    })
+    if(response.data == null){
+        return false
+    }else{
+        gestionDeConnection(response.data.insertedId.toString())
+        return true
+    }
     return
 }
