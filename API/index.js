@@ -74,6 +74,20 @@ app.post('/fetchRecettes', async function (req, res) {
       res.json(recettes)
   } catch(e){
       console.log(e);
+      res.json(400)
+  }
+})
+//verifier la connection d'un utilisateur
+app.post('/connect', async function (req,res){
+  try {
+    const username = req.body.username;
+    const psw = req.body.psw;
+    const recettes = await client.db("PolyManger").collection("Recettes").find().skip(skips).limit(parseInt(req.body.limit)).toArray();
+    console.log(recettes)
+    res.json(recettes)
+  } catch(e){
+      console.log(e);
+      res.json(400)
   }
 })
 
